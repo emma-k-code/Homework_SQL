@@ -43,27 +43,24 @@ create table expenseClass
 );
 
 -- 新增收入類別資料表中的資料
-INSERT INTO incomeClass(className) VALUES ('薪水');
-INSERT INTO incomeClass(className) VALUES ('獎金');
-INSERT INTO incomeClass(className) VALUES ('投資');
+INSERT INTO incomeClass(className) VALUES ('薪水'),('獎金'),('投資');
 
 -- 新增支出類別資料表中的資料
-INSERT INTO expenseClass(className) VALUES ('食');
-INSERT INTO expenseClass(className) VALUES ('衣');
-INSERT INTO expenseClass(className) VALUES ('住');
-INSERT INTO expenseClass(className) VALUES ('行');
-INSERT INTO expenseClass(className) VALUES ('育');
-INSERT INTO expenseClass(className) VALUES ('樂');
+INSERT INTO expenseClass(className) VALUES 
+('食'),('衣'),('住'),('行'),('育'),('樂');
 
 -- 新增收入資料表中的資料
-INSERT INTO income(incomeDate,incomeClassID,incomeName,money) VALUES ('2016-06-01','1','','30000');
-INSERT INTO income(incomeDate,incomeClassID,incomeName,money) VALUES ('2016-06-22','3','基金','5000');
-INSERT INTO income(incomeDate,incomeClassID,incomeName,money) VALUES ('2016-06-30','2','','1000');
+INSERT INTO income(incomeDate,incomeClassID,incomeName,money) VALUES 
+('2016-06-01','1','','30000'),
+('2016-06-22','3','基金','5000'),
+('2016-06-30','2','','1000');
+
 
 -- 新增支出資料表中的資料
-INSERT INTO expense(expenseDate,expenseClassID,expenseName,money) VALUES ('2016-03-15','1','家族聚餐','5000');
-INSERT INTO expense(expenseDate,expenseClassID,expenseName,money) VALUES ('2016-06-12','3','房租','7000');
-INSERT INTO expense(expenseDate,expenseClassID,expenseName,money) VALUES ('2016-04-30','6','與朋友出遊','14000');
+INSERT INTO expense(expenseDate,expenseClassID,expenseName,money) VALUES 
+('2016-03-15','1','家族聚餐','5000'),
+('2016-06-12','3','房租','7000'),
+('2016-04-30','6','與朋友出遊','14000');
 
 --  搜尋incomeClass表中資料
 SELECT * FROM incomeClass;
