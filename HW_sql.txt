@@ -1,0 +1,88 @@
+-- 建立accounts資料庫
+create database accounts default character set utf8; 
+
+use accounts;
+
+drop table income;
+drop table expense;
+drop table incomeClass;
+drop table expenseClass;
+
+-- 建立收入資料表
+create table income
+(
+  incomeID int auto_increment primary key,
+  incomeDate DATE not null,
+  incomeClassID VARCHAR(2) not null,
+  incomeName VARCHAR(10),
+  money int not null
+);
+
+-- 建立支出資料表
+create table expense
+(
+  expenseID int auto_increment primary key,
+  expenseDate DATE not null,
+  expenseClassID VARCHAR(2) not null,
+  expenseName VARCHAR(10),
+  money int not null
+);
+
+-- 建立收入類別資料表
+create table incomeClass
+(
+  classID int auto_increment primary key,
+  className VARCHAR(10) not null
+);
+
+-- 建立支出類別資料表
+create table expenseClass
+(
+  classID int auto_increment primary key,
+  className VARCHAR(10) not null
+);
+
+-- 新增收入類別資料表中的資料
+INSERT INTO incomeClass(className) VALUES ('薪水');
+INSERT INTO incomeClass(className) VALUES ('獎金');
+INSERT INTO incomeClass(className) VALUES ('投資');
+
+-- 新增支出類別資料表中的資料
+INSERT INTO expenseClass(className) VALUES ('食');
+INSERT INTO expenseClass(className) VALUES ('衣');
+INSERT INTO expenseClass(className) VALUES ('住');
+INSERT INTO expenseClass(className) VALUES ('行');
+INSERT INTO expenseClass(className) VALUES ('育');
+INSERT INTO expenseClass(className) VALUES ('樂');
+
+-- 新增收入資料表中的資料
+INSERT INTO income(incomeDate,incomeClassID,incomeName,money) VALUES ('2016-06-01','1','','30000');
+INSERT INTO income(incomeDate,incomeClassID,incomeName,money) VALUES ('2016-06-22','3','基金','5000');
+INSERT INTO income(incomeDate,incomeClassID,incomeName,money) VALUES ('2016-06-30','2','','1000');
+
+-- 新增支出資料表中的資料
+INSERT INTO expense(expenseDate,expenseClassID,expenseName,money) VALUES ('2016-03-15','1','家族聚餐','5000');
+INSERT INTO expense(expenseDate,expenseClassID,expenseName,money) VALUES ('2016-06-12','3','房租','7000');
+INSERT INTO expense(expenseDate,expenseClassID,expenseName,money) VALUES ('2016-04-30','6','與朋友出遊','14000');
+
+--  搜尋incomeClass表中資料
+SELECT * FROM incomeClass;
+
+--  搜尋expenseClass表中資料
+SELECT * FROM expenseClass;
+
+--  結合income跟incomeClass兩張表進行搜尋 依日期排序
+SELECT incomeDate,c.className,incomeName,money FROM income JOIN incomeClass c ON incomeClassID = classID ORDER BY incomeDate;
+
+--  結合expense跟expenseClass兩張表進行搜尋 依日期排序
+SELECT expenseDate,c.className,expenseName,money FROM expense JOIN expenseClass c ON expenseClassID = classID ORDER BY expenseDate;
+
+-- 修改income表中ID為3的資料
+UPDATE income SET incomeClassID = ('3'), money = ('3000') WHERE incomeID = 3;
+
+SELECT incomeDate,c.className,incomeName,money FROM income JOIN incomeClass c ON incomeClassID = classID ORDER BY incomeDate;
+
+-- 刪除expense表中expenseDate為6月的資料
+DELETE FROM expense WHERE expenseDate LIKE '2016-06%';
+
+SELECT expenseDate,c.className,expenseName,money FROM expense JOIN expenseClass c ON expenseClassID = classID ORDER BY expenseDate;
